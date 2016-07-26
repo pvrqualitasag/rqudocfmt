@@ -65,49 +65,29 @@ Chamerstrasse 56, CH-6300 Zug       \\
 
 \pagebreak
 
-# Document Status
-
-
 ```{r DocuStatusTable}
-robjDocuStatus <- rqudocuhelper::refObjTable$new()
-pvecTableHeader <- c("Version",
-                     "Date",
-                     "Who",
-                     "Change")
-robjDocuStatus$setTableHeader(psTableHeader = pvecTableHeader)
-robjDocuStatus$addRow(plTableRow = list(Version = "0.0.0.900",
-                                        Date    = "",
-                                        Who     = Sys.info()[["user"]],
-                                        Change  = "Initialisation"))
-#robjDocuStatus$addRow(plTableRow = list(Version = "0.0.0.901",
-#                                        Date    = "",
-#                                        Who     = Sys.info()[["user"]],
-#                                        Change  = ""))
-robjDocuStatus$to_pander_pandoc(psStyle = "grid",
-                                psJustify = rep("left", length(pvecTableHeader)),
-                                pnSplitCells = c(10,15,5,40))
+r6objDocStat <- rqudocuhelper::R6ClassDocuStatus$new()
+r6objDocStat$setProject(psProject = "[REPLACE_WITH_PROJECT]")
+r6objDocStat$setVersion(psVersion = "0.0.901")
+r6objDocStat$setStatus(psStatus = "Init")
 
+r6objDocStat$include_doc_stat(psTitle = "## Document Status")
 ```
 
 \pagebreak
 
-# Abbreviations
-
 ```{r AbrTable}
-robjAbrTable <- rqudocuhelper::refObjTable$new()
-pvecTableHeader <- c("Abbreviation",
-                     "Meaning")
-robjAbrTable$setTableHeader(psTableHeader = pvecTableHeader)
-robjAbrTable$addRow(plTableRow = list(Abr = "Abbr",
-                                      What = "Abbreviation"))
-#robjAbrTable$addRow(plTableRow = list(Abr = "",
-#                                      What = ""))
-robjAbrTable$to_pander_pandoc(psStyle = "grid",
-                              psJustify = rep("left", length(pvecTableHeader)),
-                              pnSplitCells = c(20,60))
+r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
+r6ob_abbrtable$include_abbr_table(psAbbrTitle = "## Abbreviations")
 ```
 
 \pagebreak
 
 
 # Disclaimer
+
+<!-- END of document:  Below this must not be anything, except the command to write all abbreviations to a file --> 
+```{r WriteTableOfAbbreviations, results='hide'}
+if (!r6ob_abbrtable$is_empty_abbr())
+  r6ob_abbrtable$writeToTsvFile()
+```
