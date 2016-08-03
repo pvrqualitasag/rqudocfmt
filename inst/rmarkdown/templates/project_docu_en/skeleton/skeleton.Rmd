@@ -9,9 +9,13 @@ output:
 ```{r DocumentSetup, echo=FALSE, results='hide', include=FALSE}
 ### # specify knitr options
 knitr::opts_chunk$set(echo = FALSE, results = 'asis')
-
+```
+```{r EnumeratorSetup, echo=FALSE, results='hide'}
 ### # initialize section counter
 robjSecEnum <- rqudocuhelper::SectionEnumerator$new()
+```
+```{r AbrTableSetup, echo=FALSE, results='hide'}
+r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
 ```
 
 ![Qualitas Logo](png/QualitasLogo.png)
@@ -66,19 +70,12 @@ Chamerstrasse 56, CH-6300 Zug       \\
 \pagebreak
 
 ```{r DocuStatusTable}
-r6objDocStat <- rqudocuhelper::R6ClassDocuStatus$new()
-r6objDocStat$setProject(psProject = "[REPLACE_WITH_PROJECT]")
-r6objDocStat$setVersion(psVersion = "0.0.901")
-r6objDocStat$setStatus(psStatus = "Init")
+r6objDocStat <- rmddochelper::R6ClassDocuStatus$new()
+r6objDocStat$set_current_status(psVersion = "0.0.901",
+                                psStatus = "Erstellung",
+                                psProject = "[REPLACE_WITH_PROJECT]")
 
 r6objDocStat$include_doc_stat(psTitle = "## Document Status")
-```
-
-\pagebreak
-
-```{r AbrTable}
-r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
-r6ob_abbrtable$include_abbr_table(psAbbrTitle = "## Abbreviations")
 ```
 
 \pagebreak
@@ -91,3 +88,9 @@ r6ob_abbrtable$include_abbr_table(psAbbrTitle = "## Abbreviations")
 if (!r6ob_abbrtable$is_empty_abbr())
   r6ob_abbrtable$writeToTsvFile()
 ```
+\pagebreak
+
+```{r AbrTableToDocument}
+r6ob_abbrtable$include_abbr_table(psAbbrTitle = "## Abbreviations")
+```
+
