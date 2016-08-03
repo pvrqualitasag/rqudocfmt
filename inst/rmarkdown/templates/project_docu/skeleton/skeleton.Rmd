@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = FALSE, results = 'asis')
 robjSecEnum <- rqudocuhelper::SectionEnumerator$new()
 ```
 ```{r AbrTableSetup, echo=FALSE, results='hide'}
+### # instantiate table of abbreviation
 r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
 ```
 
