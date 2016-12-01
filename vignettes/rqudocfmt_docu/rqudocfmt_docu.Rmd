@@ -10,11 +10,15 @@ knitr::opts_chunk$set(echo = FALSE, results = 'asis')
 ```
 
 ```{r DocumentStatus, eval=TRUE}
-r6obj_docstat <- rmddochelper::R6ClassDocuStatus$new()
-r6obj_docstat$setProject(psProject = "rqudocfmt")
-r6obj_docstat$setVersion(psVersion = "0.0.901")
-r6obj_docstat$setStatus(psStatus = "Initialisation")
-r6obj_docstat$include_doc_stat(psTitle = "## Document Status")
+r6objDocStat <- rmddochelper::R6ClassDocuStatus$new()
+r6objDocStat$set_current_status(psVersion = "0.0.901",
+                                psStatus = "Initialisation",  
+                                psDate = "2016-07-21", 
+                                psProject = "rqudocfmt")
+r6objDocStat$set_current_status(psVersion = "0.0.902",
+                                psStatus = "New formats, new creation functions",  
+                                psProject = "rqudocfmt")
+r6objDocStat$include_doc_stat(psTitle = "## Dokumentenstatus")
 ```
 
 
@@ -30,29 +34,33 @@ This document describes the content of the R-package `rqudocfmt`
 
 
 ## Introduction
-`RStudio` together with `rmarkdown`, `knitr` and `pandoc` are great tools to create documents. The property of using templates extensively helps to create documents many different ways. The package `rmarkdown` has built-in functionality to on the one hand use existing templates and on the other hand define new templates that can be used for creating new documents. For more details, please have a look at http://rmarkdown.rstudio.com/developer_document_templates.html and https://blog.rstudio.org/2016/03/21/r-markdown-custom-formats/
+`RStudio` together with `rmarkdown`, `knitr` and `pandoc` are great tools to create documents. The property of using templates extensively helps to create documents in many different ways. The package `rmarkdown` has built-in functionality to on the one hand use existing templates and on the other hand define new templates that can be used for creating new documents. For more details, please have a look at http://rmarkdown.rstudio.com/developer_document_templates.html and https://blog.rstudio.org/2016/03/21/r-markdown-custom-formats/
 
 
 ## Functionality and format separation
-Some specialized formats that are specific for a project or a company should not be placed in a general purpose package which provides functionality for managing documents. Hence those specialized formats are better placed in a separate package which just contains the formats. 
+Some specialized formats that are specific for a project or a company should not be placed in a general purpose package which provides functionality for managing documents. Hence those specialized formats are better placed in a separate package which contains the specialized formats and some wrapper functionality to create documents based on the specialized formats. 
 
 
 ## This package `rqudocfmt`
-This package contains all formats that are used at Qualitas AG. Those formats were originally designed as some MS-Office templates. Before being able to use the formats in this package they have to be converted to `rmarkdown`. 
+This package contains all formats that are used at Qualitas AG. Those formats were originally designed as some MS-Office templates. Before being able to use the formats in this package they have to be converted to `rmarkdown`. This conversion has to be done mostly manually, because conversion of MS-Office templates to markdown format is up to now  and according to my knowledge not something that can easily be automated.
 
 
 ## Example formats
-One of the format template is called `project_docu`. This template comes with a company specific title page and with a predefined section structure. A screenshot of the title page of a document based on templated `project_docu` is given below.
+Qualitas AG has recently moved to a new CI (Corporate Identity) in the area of documentation. The new templates have been converted to the markdown format and are available under the template name `qualitas_project_ph_spez_{de,en}`. An example of a document based on this template is shown below.
 
-```{r project_docu_title_page_graphics}
-rmddochelper::insertOdgAsPdf(psOdgFileStem = "project_docu_title_page")
+```{r QuProPhSpez}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "QuProPhSpez")
 ```
+
+Older formats such as `project_docu` are still available, but are to be regarded as deprecated. 
 
 
 ## Prerequisites
 In order to be able to optimally use the templates in this package `rqudocfmt`, this package must be installed in one of the directories that are accessible via the R-library path. As a result of having `rqudocfmt` installed, `RStudio` also lists the formats when creating a new R Markdown document under `From Template`.
 
 
+## Creation function
+Creating a new document with a specific format can be done by invoking the generic creation function from package `rmddochelper`. For more convenience, we provide a wrapper in this package which is specific for the templates that are provided by this package. 
 
 
 
@@ -61,3 +69,5 @@ r6ob_abbrtable$writeToTsvFile()
 ```
 <!-- END of document                 -- 
   -- Below this must not be anything --> 
+
+

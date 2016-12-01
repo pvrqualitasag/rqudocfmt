@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = FALSE, results = 'asis')
 robjSecEnum <- rqudocuhelper::SectionEnumerator$new()
 ```
 ```{r AbrTableSetup, echo=FALSE, results='hide'}
+### # init table of abbreviation
 r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
 ```
 
@@ -72,7 +73,7 @@ Chamerstrasse 56, CH-6300 Zug       \\
 ```{r DocuStatusTable}
 r6objDocStat <- rmddochelper::R6ClassDocuStatus$new()
 r6objDocStat$set_current_status(psVersion = "0.0.901",
-                                psStatus = "Erstellung",
+                                psStatus = "Init",
                                 psProject = "[REPLACE_WITH_PROJECT]")
 
 r6objDocStat$include_doc_stat(psTitle = "## Document Status")
@@ -83,7 +84,8 @@ r6objDocStat$include_doc_stat(psTitle = "## Document Status")
 
 # Disclaimer
 
-<!-- END of document:  Below this must not be anything, except the command to write all abbreviations to a file --> 
+<!-- END of document:  Below this must not be anything, except the stuff --
+  -- concerning the table of abbreviations                               --> 
 ```{r WriteTableOfAbbreviations, results='hide'}
 if (!r6ob_abbrtable$is_empty_abbr())
   r6ob_abbrtable$writeToTsvFile()
