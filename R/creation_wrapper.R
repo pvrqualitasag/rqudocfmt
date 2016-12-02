@@ -25,7 +25,7 @@
 #' @param   plReplace            list with replacement key-values
 #' @export  create_qupps_de
 create_qupps_de <- function(psDocuName,
-                            psPkgPath,
+                            psPkgPath         = ".",
                             psDocuSubdir      = "vignettes",
                             pDocuHasOwnSubdir = TRUE,
                             pbOverwrite       = FALSE,
@@ -62,7 +62,7 @@ create_qupps_de <- function(psDocuName,
 #' @param   plReplace            list with replacement key-values
 #' @export  create_qupps_en
 create_qupps_en <- function(psDocuName,
-                            psPkgPath,
+                            psPkgPath         = ".",
                             psDocuSubdir      = "vignettes",
                             pDocuHasOwnSubdir = TRUE,
                             pbOverwrite       = FALSE,

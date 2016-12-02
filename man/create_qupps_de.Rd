@@ -4,7 +4,7 @@
 \alias{create_qupps_de}
 \title{Create a document from template qualitas_project_ph_spez_de}
 \usage{
-create_qupps_de(psDocuName, psPkgPath, psDocuSubdir = "vignettes",
+create_qupps_de(psDocuName, psPkgPath = ".", psDocuSubdir = "vignettes",
   pDocuHasOwnSubdir = TRUE, pbOverwrite = FALSE, pbEdit = TRUE,
   plReplace = NULL)
 }
