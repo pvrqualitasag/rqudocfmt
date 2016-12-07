@@ -97,13 +97,16 @@ r6objDocStat$include_doc_stat(psTitle = "# Document Status")
 # Disclaimer
 
 
-<!-- END of document:  Below this must not be anything, except the stuff --
-  -- concerning the table of abbreviations                               --> 
+<!-- ------------------------------------------------------------------------------------ --
+  -- END of document:  Below this must not be anything, except the table of abbreviations --
+  -- ------------------------------------------------------------------------------------ --> 
+
+\pagebreak
+
 ```{r WriteTableOfAbbreviations, results='hide'}
 if (!r6ob_abbrtable$is_empty_abbr())
   r6ob_abbrtable$writeToTsvFile()
 ```
-\pagebreak
 
 ```{r AbrTableToDocument}
 r6ob_abbrtable$include_abbr_table(psAbbrTitle = "# Abbreviations")
