@@ -12,7 +12,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE, results = 'asis')
 ```
 
-```{r SectionEnumeratorSetup, results='hide'}
+```{r SectionEnumeratorSetup, results='hide', eval=FALSE}
 ### # initialize section counter
 robjSecEnum <- rqudocuhelper::SectionEnumerator$new()
 ```

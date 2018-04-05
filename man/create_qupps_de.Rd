@@ -33,4 +33,3 @@ is not overwritten if it already exists, is open to be edited
 directly and does not pass on any information for pattern
 replacement.
 }
-
