@@ -1,5 +1,5 @@
-name: Qualitas Documentation (PDF)
+name: Qualitas Specification (PDF)
 description: >
-  Template for Qualitas documenation. This customises the basic PDF output
+  Template for a specification document used at Qualitas AG. This customises the basic PDF output
   to take up as little space as possible.
 create_dir: false
