@@ -1,0 +1,112 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: tex/header.tex
+    fig_caption: false
+  word_document: default
+---
+
+```{r KnitrSetup, echo=FALSE, results='hide', include=FALSE}
+### # specify knitr options
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+
+```{r TableSetup, results='hide'}
+### # init table of abbreviation
+r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
+r6ob_abbrtable$setColHeader(pvColHeader = c("Abbreviation","Meaning"))
+
+# init table of document status
+r6objDocStat <- rmddochelper::R6ClassDocuStatus$new()
+r6objDocStat$setStatusColnames(psStatusColnames = c("Version", "Date", "Author","Status", "Project"))
+```
+
+\setlength{\voffset}{-0.5cm}
+\setlength{\headsep}{5pt}
+
+\begin{flushright}
+\includegraphics[width=\linewidth]{png/quag_logo.pdf}
+\end{flushright}
+
+
+\fcolorbox{white}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{11pt}{20pt}\selectfont % 
+		\vspace*{0.25cm} % 
+
+		\hfill \textcolor{red}{[Documenttype]}
+
+		\vspace*{0.25cm} 
+	}
+}
+
+\vspace*{0.5cm}
+
+\fcolorbox{red}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{20pt}{36pt}\selectfont %
+
+		\vspace*{1.0cm}
+    \textcolor{red}{Title}
+
+		\vspace*{1.0cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{1cm}
+
+\begin{center}
+\includegraphics[width=\textwidth]{png/WordCloud.png}
+\end{center}
+
+\vspace{2ex}
+{\centering \small
+\hfill
+\begin{tabular}{l}
+Peter von Rohr                      \\
+FB EDV, Qualitas AG                 \\
+Chamerstrasse 56, CH-6300 Zug       \\
+\verb+http://www.qualitasag.ch+     \\
+\verb+peter.vonrohr@qualitasag.ch+  
+\end{tabular}
+}
+
+\pagebreak
+
+\setlength{\voffset}{0.5cm}
+\setlength{\headsep}{19pt}
+\tableofcontents
+
+\pagebreak
+
+
+```{r DocuStatusTable}
+r6objDocStat$set_current_status(psVersion = "0.0.901",
+                                psStatus = "Init",  
+                                psProject = "[REPLACE_WITH_PROJECT]")
+r6objDocStat$include_doc_stat(psTitle = "# Document Status")
+```
+
+
+\pagebreak
+
+
+# Disclaimer
+
+
+<!-- ------------------------------------------------------------------------------------ --
+  -- END of document:  Below this must not be anything, except the table of abbreviations --
+  -- ------------------------------------------------------------------------------------ --> 
+
+\pagebreak
+
+```{r WriteTableOfAbbreviations, results='hide'}
+if (!r6ob_abbrtable$is_empty_abbr())
+  r6ob_abbrtable$writeToTsvFile()
+```
+
+```{r AbrTableToDocument}
+r6ob_abbrtable$include_abbr_table(psAbbrTitle = "# Abbreviations")
+```

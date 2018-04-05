@@ -1,0 +1,30 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: tex/header.tex
+    fig_caption: false
+  word_document: default
+---
+
+```{r DocumentSetup, echo=FALSE, results='hide', include=FALSE}
+### # specify knitr options
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+\begin{flushright}
+\includegraphics[width=\linewidth]{png/quag_logo.pdf}
+\end{flushright}
+
+
+\fcolorbox{white}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{11pt}{20pt}\selectfont % 
+		\vspace*{0.25cm} % 
+
+		\hfill \textcolor{red}{[Documenttype]}
+
+		\vspace*{0.25cm} 
+	}
+}
+
